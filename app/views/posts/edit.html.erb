@@ -1,6 +1,14 @@
 <div class="panel panel-default">
   <div class="panel-heading"><h2>Edit Post</h2></div>
   <div class="panel-body">
-    <%= render 'edit'  %>
+    <%= form_for(:post, :url => {:action => 'update', :id => @post.id}) do |f| %>
+    <div class="form">
+      <%= render(:partial => "form", :locals => {:f => f}) %>
+      <div class="form-buttons">
+        <%= button_to 'Update', edit_post_path, method: :patch, class: 'btn btn-primary' %>
+        <%= link_to 'Back', posts_path, {:class => "btn btn-default"} %>
+      </div>
+    </div>
+    <% end %>
   </div>
 </div>

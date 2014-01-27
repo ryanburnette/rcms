@@ -31,10 +31,11 @@ class PostsController < ApplicationController
 
   # PATCH/PUT /posts/1
   def update
-    if @post.update()
-      redirect_to :action => "edit", :id => @post.id, notice: "Post was successfully updated."
+    @post = Post.find(params[:id])
+    if @post.update_attributes(post_params)
+      redirect_to(:action => 'edit', :id => @post.id, :notice => "foo")
     else
-      redirect_to :action => "edit", :id => @post.id, notice: "Post was not updated."
+      render action: "edit"
     end
   end
 
@@ -52,6 +53,6 @@ class PostsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def post_params
-      params.permit(:post, :title, :slug, :content, :published)
+      params.require(:post).permit(:title, :slug, :content, :published)
     end
 end
