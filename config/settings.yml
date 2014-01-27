@@ -1,0 +1,13 @@
+# config/application.yml
+defaults: &defaults
+  admin_email: "ryan.burnette@gmail.com"
+  canonical_domain: "someurl.com"
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
