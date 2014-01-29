@@ -1,5 +1,15 @@
 Rcms::Application.routes.draw do
+
+  get "dashboard/index"
   resources :posts
+
+  namespace :admin do
+    resources :posts
+  end
+
+  scope :admin do
+    get "/" => "dashboard#index"
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

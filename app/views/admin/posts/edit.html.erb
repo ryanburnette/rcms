@@ -5,8 +5,8 @@
     <div class="form">
       <%= render(:partial => "form", :locals => {:f => f}) %>
       <div class="form-buttons">
-        <%= button_to 'Update', edit_post_path, method: :patch, class: 'btn btn-primary' %>
-        <%= link_to 'Back', posts_path, {:class => "btn btn-default"} %>
+        <%= button_to 'Update', edit_admin_post_path, method: :patch, class: 'btn btn-primary' %>
+        <%= link_to 'Back', admin_posts_path, {:class => "btn btn-default"} %>
       </div>
     </div>
     <% end %>
