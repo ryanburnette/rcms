@@ -1,15 +1,21 @@
 Rcms::Application.routes.draw do
 
+  devise_for :admin_users, :skip => [:registrations]
+  
+
   get "dashboard/index"
   resources :posts
 
   namespace :admin do
     resources :posts
+    resources :admin_users
   end
 
   scope :admin do
     get "/" => "dashboard#index"
   end
+
+  root :to => "dashboard#index"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

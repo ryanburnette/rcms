@@ -54,3 +54,6 @@ gem 'table_print'
 
 # Use settingslogic
 gem 'settingslogic'
+
+# Use Devise
+gem 'devise'

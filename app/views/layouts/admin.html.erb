@@ -21,6 +21,19 @@
     <h1>rcms: Admin</h1>
   </div>
 
-  <div class="container"><%= yield %></div>
+  <!--
+  <div class="container user">
+    <pre><%= current_admin_user.to_yaml %></pre>
+  </div>
+  -->
+
+  <div class="container">
+  
+    <div class="alert"><%= alert %></div>
+    <div class="notice"><%= notice %></div>
+
+    <%= yield %>
+
+  </div>
 
 </body></html>

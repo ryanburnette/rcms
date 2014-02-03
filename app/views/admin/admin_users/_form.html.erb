@@ -1,0 +1,17 @@
+<%= form_for(@admin_admin_user, :url => @admin_admin_user.new_record? ? '/admin/admin_users' : "/admin/admin_users/#{@admin_admin_user.id}") do |f| %>
+  <% if @admin_admin_user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@admin_admin_user.errors.count, "error") %> prohibited this admin_admin_user from being saved:</h2>
+
+      <ul>
+      <% @admin_admin_user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

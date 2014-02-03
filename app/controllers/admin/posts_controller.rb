@@ -1,7 +1,11 @@
 class Admin::PostsController < PostsController
   layout("admin")
 
+  before_action :authenticate_admin_user!
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :require_super_admin!, only: [:destroy]
+  # before_action :set_post, except: [:new, :edit]
+  # before_action :can_edit_post, :only => [:edit, :update, :destroy]
 
   # GET /posts/new
   def new
@@ -20,7 +24,7 @@ class Admin::PostsController < PostsController
     @post = Post.new(post_params)
 
     if @post.save
-      redirect_to({:action => "edit", :id => @post.id, notice: "Post was successfully created."})
+      redirect_to(edit_admin_post_path(@post), :notice => "Post was successfully created.")
     else
       render({action: "new"})
     end
@@ -30,7 +34,7 @@ class Admin::PostsController < PostsController
   def update
     set_post
     if @post.update_attributes(post_params)
-      redirect_to({:action => 'edit', :id => @post.id, :notice => "foo"})
+      redirect_to(edit_admin_post_path(@post), :notice => "Post was successfully updated.")
     else
       render({action: "edit"})
     end
@@ -51,4 +55,13 @@ class Admin::PostsController < PostsController
     def post_params
       params.require(:post).permit(:title, :slug, :content, :published)
     end
+
+    '''
+    # method to help with determining role capability
+    def can_edit_post 
+      unless current_admin.has_role?(:GOD)
+        render template: "admin/not_allowed", status: 403
+      end
+    end
+    '''
 end
