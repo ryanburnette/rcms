@@ -3,11 +3,7 @@ class PostsController < ApplicationController
 
   # GET /posts
   def index
-    all_posts
+    @posts = Post.order('posts.date DESC').all
   end
 
-  private
-    def all_posts
-      @posts = Post.all
-    end
 end
