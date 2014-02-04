@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   private
     def require_super_admin!
-      if current_admin_user.nil? || current_admin_user.role != "superadmin"
+      if current_admin_user.nil? || current_admin_user.role != "super"
         redirect_to admin_posts_path, :alert => "You need to be super to do that."
       end 
     end

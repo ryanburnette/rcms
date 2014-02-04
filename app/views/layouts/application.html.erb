@@ -6,20 +6,10 @@
 
 <%= csrf_meta_tags %>
 
-<%= stylesheet_link_tag("application") %>
-<%= stylesheet_link_tag("posts") %>
-
-<%= javascript_include_tag :application %>
-<%= javascript_include_tag :posts %>
-
 </head>
 
 
 <body>
-
-  <div class="container header">
-    <h1><%= link_to("rcms", posts_path ) %></h1>
-  </div>
 
   <div class="container"><%= yield %></div>
 

@@ -6,11 +6,11 @@
 
 <%= csrf_meta_tags %>
 
-<%= stylesheet_link_tag("application") %>
-<%= stylesheet_link_tag("posts") %>
+<%= stylesheet_link_tag :admin %>
+<%= stylesheet_link_tag :admin_posts %>
 
-<%= javascript_include_tag :application %>
-<%= javascript_include_tag :posts %>
+<%= javascript_include_tag :admin %>
+<%= javascript_include_tag :admin_posts %>
 
 </head>
 
@@ -29,8 +29,12 @@
 
   <div class="container">
   
-    <div class="alert"><%= alert %></div>
-    <div class="notice"><%= notice %></div>
+    <% if alert %>
+    <div class="alert alert-info"><%= alert %></div>
+    <% end %>
+    <% if notice %>
+    <div class="alert alert-info"><%= notice %></div>
+    <% end %>
 
     <%= yield %>
 

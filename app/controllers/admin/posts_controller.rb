@@ -7,6 +7,8 @@ class Admin::PostsController < PostsController
   # before_action :set_post, except: [:new, :edit]
   # before_action :can_edit_post, :only => [:edit, :update, :destroy]
 
+  helper_method :post_statuses
+
   # GET /posts/new
   def new
     @form_action = :create
@@ -46,6 +48,14 @@ class Admin::PostsController < PostsController
     redirect_to(admin_posts_url, {:notice => 'Post was successfully destroyed.'})
   end
 
+  def post_statuses
+    [
+      ['Draft', 'draft'],
+      ['Pending', 'pending'],
+      ['Published', 'published']
+    ]
+  end
+
   private
     def set_post
       @post = Post.find(params[:id])
@@ -53,7 +63,7 @@ class Admin::PostsController < PostsController
 
     # Only allow a trusted parameter "white list" through.
     def post_params
-      params.require(:post).permit(:title, :slug, :content, :published)
+      params.require(:post).permit(:title, :slug, :content, :date, :status)
     end
 
     '''

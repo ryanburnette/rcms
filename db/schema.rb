@@ -36,7 +36,8 @@ ActiveRecord::Schema.define(version: 20140203213936) do
     t.string   "title"
     t.string   "slug"
     t.text     "content"
-    t.datetime "published"
+    t.datetime "date"
+    t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
