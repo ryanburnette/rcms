@@ -5,6 +5,7 @@
       <table class="table">
         <thead>
           <tr>
+            <th><%= check_box_tag "all" %></th>
             <th>Title</th>
             <th>Slug</th>
             <th>Status</th>
@@ -17,6 +18,7 @@
         <tbody>
           <% @posts.each do |post| %>
             <tr>
+              <td><%= check_box_tag "post-#{post.id}" %></td>
               <td><strong><%= post.title %></strong></td>
               <td><%= post.slug %></td>
               <td><%= post.status.capitalize %></td>

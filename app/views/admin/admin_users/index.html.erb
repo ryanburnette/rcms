@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+      <th></th>
       <th>Email</th>
       <th></th>
       <th></th>
@@ -13,6 +14,7 @@
   <tbody>
     <% @admin_admin_users.each do |admin_admin_user| %>
       <tr>
+        <td><%= check_box_tag %></td>
         <td><%= admin_admin_user.email %></td>
         <td><%= link_to 'Show', admin_admin_user_path(admin_admin_user) %></td>
         <td><%= link_to 'Edit', edit_admin_admin_user_path(admin_admin_user) %></td>
