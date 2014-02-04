@@ -6,12 +6,10 @@ Rcms::Application.routes.draw do
 
   namespace :admin do
     resources :posts
-    resources :admin_users
+    resources :admin_users, :path => "users"
   end
-
-  scope :admin do
-    get "/" => "dashboard#index"
-  end
+  get "/admin" => "dashboard#index"
+  get "/admin/dashboard" => "dashboard#index"
 
   root :to => "welcome#index"
 

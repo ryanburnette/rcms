@@ -9,6 +9,7 @@
             <th>Title</th>
             <th>Slug</th>
             <th>Status</th>
+            <th>Author</th>
             <th>Date</th>
             <th class="edit"></th>
             <th class="delete"></th>
@@ -22,6 +23,7 @@
               <td><strong><%= post.title %></strong></td>
               <td><%= post.slug %></td>
               <td><%= post.status.capitalize %></td>
+              <td><%= post.admin_user ? post.admin_user.email : "" %></td>
               <td><%= post.date.getlocal.strftime("%Y-%m-%d %l:%M %p %Z") %></td>
               <td><%= link_to 'Edit', edit_admin_post_path(post), :class => 'btn btn-default btn-xs' %></td>
               <td><%= button_to 'Delete', admin_post_path(post), {:method => :delete, :class => 'btn btn-danger btn-xs', :data => {:confirm => 'Are you sure you want to delete this post?'} } %></td>
