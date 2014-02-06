@@ -1,0 +1,14 @@
+<div class="panel panel-default">
+  <div class="panel-heading"><h2>New Page</h2></div>
+  <div class="panel-body">
+    <div class="form">
+      <%= form_for(:page, :url => {:action => 'create'}) do |f| %>
+      <%= render(:partial => "form", :locals => {:f => f}) %>
+      <div class="form-buttons">
+        <%= f.submit "Create", {:class => "btn btn-primary"}  %>
+        <%= link_to 'Back', admin_pages_path, {:class => "btn btn-default"} %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

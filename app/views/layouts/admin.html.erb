@@ -19,13 +19,14 @@
   <div class="container header">
     <h1>rcms: Admin</h1>
 
+    <% if admin_user_signed_in? %>
     <ul class="nav nav-tabs">
       <li><%= link_to "Dashboard", admin_dashboard_path %></li>
       <li><%= link_to "Posts", admin_posts_path %></li>
+      <li><%= link_to "Pages", admin_pages_path %></li>
       <li><%= link_to "Users", admin_admin_users_path %></li>
-
-      <li class="pull-right"><a href="#"><%= current_admin_user.email %></a></li>
     </ul>
+    <% end %>
   </div>
 
   <div class="container">

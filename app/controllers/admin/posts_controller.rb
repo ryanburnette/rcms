@@ -7,8 +7,6 @@ class Admin::PostsController < PostsController
   # before_action :set_post, except: [:new, :edit]
   # before_action :can_edit_post, :only => [:edit, :update, :destroy]
 
-  helper_method :post_statuses
-
   # GET /posts/new
   def new
     @form_action = :create
@@ -48,14 +46,6 @@ class Admin::PostsController < PostsController
   def destroy
     @post.destroy
     redirect_to(admin_posts_url, {:notice => 'Post was successfully destroyed.'})
-  end
-
-  def post_statuses
-    [
-      ['Draft', 'draft'],
-      ['Pending', 'pending'],
-      ['Published', 'published']
-    ]
   end
 
   private

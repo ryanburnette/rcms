@@ -57,7 +57,7 @@ jQuery(document).ready(function($) {
   };
 
   posts.setDtNow = function () {
-    $('#post_date').setNow(true);
+    $('#post_date, #page_date').setNow(true);
   };
 
   posts.initAceEditor();

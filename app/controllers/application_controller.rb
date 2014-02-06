@@ -2,13 +2,21 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery :with => :exception
 
-  helper_method :roles_available
+  helper_method :roles_available, :post_statuses
 
   # Helpers
   def roles_available
     [
       ['None', ''],
       ['Super', 'super']
+    ]
+  end
+
+  def post_statuses
+    [
+      ['Draft', 'draft'],
+      ['Pending', 'pending'],
+      ['Published', 'published']
     ]
   end
 

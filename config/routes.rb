@@ -6,6 +6,7 @@ Rcms::Application.routes.draw do
 
   namespace :admin do
     resources :posts
+    resources :pages
     resources :admin_users, :path => "users"
   end
   get "/admin" => "dashboard#index"
