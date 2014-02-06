@@ -1,5 +1,14 @@
-<h1>New admin_admin_user</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', admin_admin_users_path %>
+<div class="panel panel-default">
+  <div class="panel-heading"><h2>New User</h2></div>
+  <div class="panel-body">
+    <div class="form">
+      <%= form_for(:admin_admin_user, :url => {:action => 'create'}) do |f| %>
+      <%= render(:partial => "form", :locals => {:f => f}) %>
+      <div class="form-buttons">
+        <%= f.submit "Create", {:class => "btn btn-primary"}  %>
+        <%= link_to 'Back', admin_admin_users_path, {:class => "btn btn-default"} %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

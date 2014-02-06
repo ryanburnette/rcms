@@ -1,17 +1,20 @@
-<%= form_for(@admin_admin_user, :url => @admin_admin_user.new_record? ? '/admin/admin_users' : "/admin/admin_users/#{@admin_admin_user.id}") do |f| %>
-  <% if @admin_admin_user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@admin_admin_user.errors.count, "error") %> prohibited this admin_admin_user from being saved:</h2>
+<div class="form-group">
+  <label>Name</label>
+  <%= f.text_field :name, :class => "form-control" %>
+</div>
 
-      <ul>
-      <% @admin_admin_user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<div class="form-group">
+  <label>Email</label>
+  <%= f.email_field :email, :class => "form-control" %>
+</div>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+<div class="form-group">
+  <label>Role</label>
+  <%= f.select :role, options_for_select(roles_available), {}, :class => "form-control" %>
+</div>
+
+<div class="form-group">
+  <label>Password</label>
+  <%= f.password_field :password, :class => "form-control" %>
+  <%= f.password_field :password_confirmation, :class => "form-control password-confirmation" %>
+</div>

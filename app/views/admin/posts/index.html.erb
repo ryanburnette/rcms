@@ -5,14 +5,14 @@
       <table class="table">
         <thead>
           <tr>
-            <th><%= check_box_tag "all" %></th>
+            <th class="narrow"><%= check_box_tag "all" %></th>
             <th>Title</th>
             <th>Slug</th>
             <th>Status</th>
             <th>Author</th>
             <th>Date</th>
-            <th class="edit"></th>
-            <th class="delete"></th>
+            <th class="narrow"></th>
+            <th class="narrow"></th>
           </tr>
         </thead>
 
@@ -20,10 +20,10 @@
           <% @posts.each do |post| %>
             <tr>
               <td><%= check_box_tag "post-#{post.id}" %></td>
-              <td><strong><%= post.title %></strong></td>
+              <td><%= post.title %></td>
               <td><%= post.slug %></td>
               <td><%= post.status.capitalize %></td>
-              <td><%= post.admin_user ? post.admin_user.email : "" %></td>
+              <td><%= post.admin_user.email %></td>
               <td><%= post.date.getlocal.strftime("%Y-%m-%d %l:%M %p %Z") %></td>
               <td><%= link_to 'Edit', edit_admin_post_path(post.id), :class => 'btn btn-default btn-xs' %></td>
               <td><%= button_to 'Delete', admin_post_path(post.id), {:method => :delete, :class => 'btn btn-danger btn-xs', :data => {:confirm => 'Are you sure you want to delete this post?'} } %></td>

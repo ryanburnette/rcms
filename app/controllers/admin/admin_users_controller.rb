@@ -27,8 +27,9 @@ class Admin::AdminUsersController < ApplicationController
     @admin_admin_user = AdminUser.new(admin_admin_user_params)
 
     if @admin_admin_user.save
-      redirect_to @admin_admin_user, notice: 'Admin user was successfully created.'
+      redirect_to admin_admin_users_path, notice: 'Admin user was successfully created.'
     else
+      flash[:alert] = "no"
       render action: 'new'
     end
   end
@@ -45,7 +46,7 @@ class Admin::AdminUsersController < ApplicationController
   # DELETE /admin/admin_users/1
   def destroy
     @admin_admin_user.destroy
-    redirect_to admin_admin_users_url, notice: 'Admin user was successfully destroyed.'
+    redirect_to admin_admin_users_path, notice: 'User was deleted.'
   end
 
   private
@@ -56,6 +57,6 @@ class Admin::AdminUsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def admin_admin_user_params
-      params[:admin_admin_user]
+      params.require(:admin_admin_user).permit(:name, :email, :password, :password_confirmation, :role)
     end
 end

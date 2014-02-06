@@ -1,29 +1,33 @@
-<h1>Listing admin_admin_users</h1>
+<div class="panel panel-default admin-index">
+  <div class="panel-heading"><h2>Users</h2></div>
+  <div class="panel-body">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="narrow"><%= check_box_tag "all" %></th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th class="narrow"></th>
+            <th class="narrow"></th>
+          </tr>
+        </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th><%= check_box_tag "all" %></th>
-      <th>Email</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @admin_admin_users.each do |admin_admin_user| %>
-      <tr>
-        <td><%= check_box_tag "admin-user-#{admin_admin_user.id}" %></td>
-        <td><%= admin_admin_user.email %></td>
-        <td><%= link_to 'Show', admin_admin_user_path(admin_admin_user) %></td>
-        <td><%= link_to 'Edit', edit_admin_admin_user_path(admin_admin_user) %></td>
-        <td><%= link_to 'Destroy', admin_admin_user_path(admin_admin_user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Admin user', new_admin_admin_user_path %>
+        <tbody>
+          <% @admin_admin_users.each do |admin_admin_user| %>
+            <tr>
+              <td><%= check_box_tag "admin-user-#{admin_admin_user.id}" %></td>
+              <td><%= admin_admin_user.name %></td>
+              <td><%= admin_admin_user.email %></td>
+              <td><%= admin_admin_user.role.capitalize %></td>
+              <td><%= link_to 'Edit', edit_admin_admin_user_path(admin_admin_user), :class => 'btn btn-default btn-xs' %></td>
+              <td><%= button_to 'Delete', admin_admin_user_path(admin_admin_user), method: :delete, :class => 'btn btn-danger btn-xs', data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <%= link_to 'New User', new_admin_admin_user_path, :class=>"btn btn-primary" %>
+  </div>
+</div>

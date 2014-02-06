@@ -9,23 +9,24 @@
 <%= stylesheet_link_tag :admin %>
 <%= stylesheet_link_tag :admin_posts %>
 
-<%= javascript_include_tag :admin %>
-<%= javascript_include_tag :admin_posts %>
+<%= javascript_include_tag :rails, :application, :admin, :admin_posts %>
 
 </head>
 
 
-<body>
+<body class="admin">
 
   <div class="container header">
     <h1>rcms: Admin</h1>
-  </div>
 
-  <!--
-  <div class="container user">
-    <pre><%= current_admin_user.to_yaml %></pre>
+    <ul class="nav nav-tabs">
+      <li><%= link_to "Dashboard", admin_dashboard_path %></li>
+      <li><%= link_to "Posts", admin_posts_path %></li>
+      <li><%= link_to "Users", admin_admin_users_path %></li>
+
+      <li class="pull-right"><a href="#"><%= current_admin_user.email %></a></li>
+    </ul>
   </div>
-  -->
 
   <div class="container">
   
