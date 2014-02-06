@@ -36,8 +36,12 @@ class Admin::AdminUsersController < ApplicationController
 
   # PATCH/PUT /admin/admin_users/1
   def update
+
+    if !@admin_admin_user.password && !@admin_admin_user.password_confirmation
+    end
+
     if @admin_admin_user.update(admin_admin_user_params)
-      redirect_to @admin_admin_user, notice: 'Admin user was successfully updated.'
+      redirect_to admin_admin_users_path, notice: 'Admin user was successfully updated.'
     else
       render action: 'edit'
     end

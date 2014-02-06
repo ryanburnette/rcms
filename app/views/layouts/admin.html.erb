@@ -7,9 +7,8 @@
 <%= csrf_meta_tags %>
 
 <%= stylesheet_link_tag :admin %>
-<%= stylesheet_link_tag :admin_posts %>
 
-<%= javascript_include_tag :rails, :application, :admin, :admin_posts %>
+<%= javascript_include_tag :rails, :application, :admin %>
 
 </head>
 
@@ -25,6 +24,10 @@
       <li><%= link_to "Posts", admin_posts_path %></li>
       <li><%= link_to "Pages", admin_pages_path %></li>
       <li><%= link_to "Users", admin_admin_users_path %></li>
+      <li class="pull-right">
+        <a href="#" class="sign-out-link">Sign Out</a>
+        <%= button_to "Sign out", destroy_admin_user_session_path, :method => "delete", :class => "sign-out-button" %>
+      </li>
     </ul>
     <% end %>
   </div>
