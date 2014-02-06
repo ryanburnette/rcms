@@ -28,7 +28,8 @@ class Admin::PostsController < PostsController
     if @post.save
       redirect_to(edit_admin_post_path(@post), :notice => "Post was successfully created.")
     else
-      render({action: "new"})
+      flash[:alert] = "Nope!"
+      render :action => 'new'
     end
   end
 
@@ -38,7 +39,8 @@ class Admin::PostsController < PostsController
     if @post.update_attributes(post_params)
       redirect_to(edit_admin_post_path(@post), :notice => "Post was successfully updated.")
     else
-      render({action: "edit"})
+      flash[:alert] = 'nope'
+      render :action => 'edit'
     end
   end
 
@@ -57,10 +59,6 @@ class Admin::PostsController < PostsController
   end
 
   private
-    def set_post
-      @post = Post.find(params[:id])
-    end
-
     # Only allow a trusted parameter "white list" through.
     def post_params
       params.require(:post).permit(:title, :slug, :content, :date, :status, :admin_user, :admin_user_id)

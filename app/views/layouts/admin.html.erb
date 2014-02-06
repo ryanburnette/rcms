@@ -29,12 +29,8 @@
 
   <div class="container">
   
-    <% if alert %>
-    <div class="alert alert-info"><%= alert %></div>
-    <% end %>
-    <% if notice %>
-    <div class="alert alert-info"><%= notice %></div>
-    <% end %>
+    <% if alert %><div class="alert alert-danger"><%= alert %></div><% end %>
+    <% if notice %><div class="alert alert-info notice"><%= notice %></div><% end %>
 
     <%= yield %>
 

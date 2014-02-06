@@ -57,3 +57,9 @@ gem 'settingslogic'
 
 # Use Devise
 gem 'devise'
+
+# Use FriendlyId
+gem 'friendly_id', '~> 5.0.0'
+
+# Use AwesomePrint
+gem 'awesome_print'

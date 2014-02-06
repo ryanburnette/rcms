@@ -6,4 +6,9 @@ class PostsController < ApplicationController
     @posts = Post.order('posts.date DESC').all
   end
 
+  private
+    def set_post
+      @post = Post.friendly.find(params[:id])
+    end
+
 end
