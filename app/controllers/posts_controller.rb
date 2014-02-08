@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   # GET /posts
@@ -7,8 +8,9 @@ class PostsController < ApplicationController
   end
 
   private
-    def set_post
-      @post = Post.friendly.find(params[:id])
-    end
+
+  def set_post
+    @post = Post.friendly.find(params[:id])
+  end
 
 end

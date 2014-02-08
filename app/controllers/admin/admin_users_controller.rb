@@ -1,8 +1,9 @@
 class Admin::AdminUsersController < ApplicationController
-  layout("admin")
   
   before_action :authenticate_admin_user!
   before_action :set_admin_admin_user, only: [:show, :edit, :update, :destroy]
+
+  layout "admin"
 
   # GET /admin/admin_users
   def index
@@ -11,6 +12,7 @@ class Admin::AdminUsersController < ApplicationController
 
   # GET /admin/admin_users/1
   def show
+    redirect_to admin_admin_users_path
   end
 
   # GET /admin/admin_users/new
@@ -37,12 +39,15 @@ class Admin::AdminUsersController < ApplicationController
   # PATCH/PUT /admin/admin_users/1
   def update
 
-    if !@admin_admin_user.password && !@admin_admin_user.password_confirmation
+    if admin_admin_user_params[:password].blank?
+      admin_admin_user_params.delete(:password)
+      admin_admin_user_params.delete(:password_confirmation)
     end
 
     if @admin_admin_user.update(admin_admin_user_params)
       redirect_to admin_admin_users_path, notice: 'Admin user was successfully updated.'
     else
+      flash[:alert] = "Couldn't update user."
       render action: 'edit'
     end
   end
@@ -54,13 +59,15 @@ class Admin::AdminUsersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_admin_admin_user
-      @admin_admin_user = AdminUser.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def admin_admin_user_params
-      params.require(:admin_admin_user).permit(:name, :email, :password, :password_confirmation, :role)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_admin_admin_user
+    @admin_admin_user = AdminUser.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def admin_admin_user_params
+    params.require(:admin_admin_user).permit(:name, :email, :password, :password_confirmation, :role)
+  end
+
 end

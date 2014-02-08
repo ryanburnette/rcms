@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
 
   helper_method :roles_available, :post_statuses
 
-  # Helpers
   def roles_available
     [
       ['None', ''],
@@ -21,10 +20,11 @@ class ApplicationController < ActionController::Base
   end
 
   private
-    def require_super_admin!
-      if current_admin_user.nil? || current_admin_user.role != "super"
-        redirect_to admin_posts_path, :alert => "You need to be super to do that."
-      end 
-    end
+
+  def require_super_admin!
+    if current_admin_user.nil? || current_admin_user.role != "super"
+      redirect_to admin_posts_path, :alert => "You need to be super to do that."
+    end 
+  end
 
 end

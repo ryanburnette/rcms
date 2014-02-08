@@ -1,11 +1,12 @@
 class Admin::PostsController < PostsController
-  layout("admin")
 
   before_action :authenticate_admin_user!
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :require_super_admin!, only: [:destroy]
   # before_action :set_post, except: [:new, :edit]
   # before_action :can_edit_post, :only => [:edit, :update, :destroy]
+
+  layout "admin"
 
   # GET /posts/new
   def new
@@ -49,17 +50,19 @@ class Admin::PostsController < PostsController
   end
 
   private
-    # Only allow a trusted parameter "white list" through.
-    def post_params
-      params.require(:post).permit(:title, :slug, :content, :date, :status, :admin_user, :admin_user_id)
-    end
 
-    '''
-    # method to help with determining role capability
-    def can_edit_post 
-      unless current_admin.has_role?(:GOD)
-        render template: "admin/not_allowed", status: 403
-      end
+  # Only allow a trusted parameter "white list" through.
+  def post_params
+    params.require(:post).permit(:title, :slug, :content, :date, :status, :admin_user, :admin_user_id)
+  end
+
+  '''
+  # method to help with determining role capability
+  def can_edit_post 
+    unless current_admin.has_role?(:GOD)
+      render template: "admin/not_allowed", status: 403
     end
-    '''
+  end
+  '''
+
 end

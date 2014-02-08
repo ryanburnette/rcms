@@ -1,0 +1,26 @@
+@import "bootstrap"
+
+body.authenticate
+  margin-top: 10rem
+  background-color: #fafafa
+
+  .container
+    max-width: 300px
+    margin-left: auto
+    margin-right: auto
+    padding: 1.5rem
+
+    h2
+      display: none
+
+    @extend .panel
+    @extend .panel-default
+
+    form
+      > div:nth-child(n+2)
+        @extend .form-group
+      input
+        @extend .form-control
+      input[type="submit"]
+        @extend .btn
+        @extend .btn-primary

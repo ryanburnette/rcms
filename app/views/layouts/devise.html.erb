@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>rcms: Admin</title>
+
+<%= csrf_meta_tags %>
+
+<%= stylesheet_link_tag :admin, :devise %>
+
+</head>
+
+
+<body class="authenticate">
+
+  <div class="container">
+  
+    <% if alert %><div class="alert alert-danger"><%= alert %></div><% end %>
+    <% if notice %><div class="alert alert-info notice"><%= notice %></div><% end %>
+
+    <%= yield %>
+
+  </div>
+
+</body></html>

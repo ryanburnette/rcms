@@ -21,11 +21,11 @@ module Rcms
     # config.i18n.default_locale = :de
 
     config.to_prepare do
-      Devise::SessionsController.layout "admin"
-      Devise::RegistrationsController.layout "admin"
-      Devise::ConfirmationsController.layout "admin"
-      Devise::UnlocksController.layout "admin"
-      Devise::PasswordsController.layout "admin"
+      Devise::SessionsController.layout "devise"
+      Devise::RegistrationsController.layout "devise"
+      Devise::ConfirmationsController.layout "devise"
+      Devise::UnlocksController.layout "devise"
+      Devise::PasswordsController.layout "devise"
     end
   end
 end
