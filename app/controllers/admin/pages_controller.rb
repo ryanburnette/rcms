@@ -14,7 +14,7 @@ class Admin::PagesController < PagesController
   end
 
   def index
-    @pages = Page.all
+    @pages = Page.rank(:row_order).all
   end
 
   def edit

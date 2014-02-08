@@ -63,3 +63,6 @@ gem 'friendly_id', '~> 5.0.0'
 
 # Use AwesomePrint
 gem 'awesome_print'
+
+# https://github.com/mixonic/ranked-model 
+gem 'ranked-model'
