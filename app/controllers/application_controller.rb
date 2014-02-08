@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery :with => :exception
 
-  helper_method :roles_available, :post_statuses
+  helper_method :roles_available, :post_statuses, :admin_nav_class
 
   def roles_available
     [
@@ -17,6 +17,14 @@ class ApplicationController < ActionController::Base
       ['Pending', 'pending'],
       ['Published', 'published']
     ]
+  end
+
+  def admin_nav_class(params,current_controller,current_action=nil)
+    if params[:controller] == current_controller && current_action == nil
+      "active"
+    elsif params[:controller] == current_controller && current_action == params[:action]
+      "active"
+    end
   end
 
   private
