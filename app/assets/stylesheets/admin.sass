@@ -1,8 +1,9 @@
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700)
+@import url(http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700|Ubuntu:400,700,400italic,700italic)
 
 $red: #ff0000
 
-$font-family-sans-serif: 'Open Sans', sans-serif
+$font-family-sans-serif: "Ubuntu", sans-serif
+$font-family-mono:       "Ubuntu Mono", monospace
 
 @import "bootstrap"
 
@@ -32,10 +33,10 @@ $font-family-sans-serif: 'Open Sans', sans-serif
   display: block
   width: 100%
   //max-width: 862px
-  min-height: 24px
+  min-height: 28px
   margin-bottom: 4rem
-  font-family: Monaco, monospace
-  font-size: 17px
+  font-family: $font-family-mono
+  font-size: 2rem
   .ace_sb
     display: none
 #post_content, #page_content

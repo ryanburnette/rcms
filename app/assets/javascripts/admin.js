@@ -19,7 +19,7 @@ jQuery(document).ready(function($) {
 
     $('#post_content,#page_content').val(editor.getValue());
     
-    console.log(height);
+    //console.log(height);
     $('#editor').height(height.toString() + "px");
     $('#editor-section').height(height.toString() + "px");
     editor.resize();
@@ -119,9 +119,22 @@ jQuery(document).ready(function($) {
     });
   };
 
+  admin.selectCurrentAuthor = function () {
+    var $selectAuthor = $('.panel.new-post .select-author, .panel.new-page .select-author')
+      , currentAdminUserID
+      ;
+
+    if ( $selectAuthor.length > 0 ) {
+      currentAdminUserID = $selectAuthor.data('admin-current-user-id');
+      console.log('option[value="' + currentAdminUserID.toString() + '"]');
+      $selectAuthor.find('option[value="' + currentAdminUserID.toString() + '"]').attr('selected','selected');
+    }
+  };
+
   admin.initAceEditor();
   admin.setDtNow();
   admin.signOut();
   admin.changePassword();
   admin.pagesSortable();
+  admin.selectCurrentAuthor();
 });

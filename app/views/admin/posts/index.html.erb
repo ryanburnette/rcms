@@ -1,4 +1,4 @@
-<div class="panel panel-default admin-index">
+<div class="panel panel-default admin-index post-index">
   <div class="panel-heading"><h2>Posts</h2></div>
   <div class="panel-body">
     <div class="table-responsive">
@@ -23,7 +23,7 @@
               <td><%= post.title %></td>
               <td><%= post.slug %></td>
               <td><%= post.status.capitalize %></td>
-              <td><%= post.admin_user.email %></td>
+              <td><%= post.admin_user.name %></td>
               <td><%= post.date.getlocal.strftime("%Y-%m-%d %l:%M %p %Z") %></td>
               <td><%= link_to 'Edit', edit_admin_post_path(post.id), :class => 'btn btn-default btn-xs' %></td>
               <td><%= button_to 'Delete', admin_post_path(post.id), {:method => :delete, :class => 'btn btn-danger btn-xs', :data => {:confirm => 'Are you sure you want to delete this post?'} } %></td>

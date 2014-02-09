@@ -10,9 +10,9 @@
   <label>Status</label>
   <%= f.select :status, options_for_select(post_statuses), {}, :class => "form-control" %>
 </div>
-<div class="form-group">
+<div class="form-group select-author" data-admin-current-user-id="<%= current_admin_user.id %>">
   <label>Author</label>
-  <%= f.collection_select(:admin_user_id, AdminUser.all, :id, :email, {}, :class => "form-control") %>
+  <%= f.collection_select(:admin_user_id, AdminUser.all, :id, :name, {}, :class => "form-control") %>
 </div>
 <div class="form-group">
   <label>Date</label>
