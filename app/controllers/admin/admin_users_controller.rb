@@ -45,7 +45,7 @@ class Admin::AdminUsersController < ApplicationController
     end
 
     if @admin_admin_user.update(admin_admin_user_params)
-      redirect_to admin_admin_users_path, notice: 'Admin user was successfully updated.'
+      redirect_to edit_admin_admin_user_path(@admin_admin_user), notice: 'Admin user was successfully updated.'
     else
       flash[:alert] = "Couldn't update user."
       render action: 'edit'

@@ -6,13 +6,14 @@
 //= require ace/ace
 //= require ace/theme-clouds
 
+//= require ./lib/jquery.setnow.js
+
 jQuery(document).ready(function($) {
-  var posts = {}
-    , admin = {}
+  var admin = {}
     , editor
     ;
 
-  posts.matchAceEditorAndField = function () {
+  admin.matchAceEditorAndField = function () {
     var height = editor.getSession().getScreenLength() * editor.renderer.lineHeight
       ;
 
@@ -24,7 +25,7 @@ jQuery(document).ready(function($) {
     editor.resize();
   };
   
-  posts.initAceEditor = function () {
+  admin.initAceEditor = function () {
     if ( $('#editor').length > 0 ) {
       editor = ace.edit("editor");
       editor.setTheme("ace/theme/clouds");
@@ -34,16 +35,16 @@ jQuery(document).ready(function($) {
       editor.setValue($('#post_content,#page_content').val(), -1);
 
       editor.on('change', function () {
-        posts.matchAceEditorAndField();
+        admin.matchAceEditorAndField();
       });
       $(window).on('load',function () {
-        posts.matchAceEditorAndField();
+        admin.matchAceEditorAndField();
         $('body').click();
       });
     }
   };
 
-  posts.setDtNow = function () {
+  admin.setDtNow = function () {
     $('#post_date, #page_date').setNow(true);
   };
 
@@ -111,58 +112,16 @@ jQuery(document).ready(function($) {
           data: { page: {'row_order_position':ui.item.index()} }
         });
 
-        post.done(function (result) {
-          if ( !result ) {
-            $sortable.sortable('cancel');
-          }
+        post.fail(function () {
+          $sortable.sortable('cancel');
         });
       }
     });
   };
 
-  posts.initAceEditor();
-  posts.setDtNow();
+  admin.initAceEditor();
+  admin.setDtNow();
   admin.signOut();
   admin.changePassword();
   admin.pagesSortable();
 });
-
-
-
-
-
-
-
-
-
-$.fn.setNow = function (onlyBlank) {
-  var now = new Date($.now())
-    , year
-    , month
-    , day
-    , hours
-    , minutes
-    , seconds
-    , formattedDateTime
-    ;
-  
-  year = now.getFullYear();
-  month = now.getMonth().toString().length === 1 ? '0' + (now.getMonth() + 1).toString() : now.getMonth() + 1;
-  day = now.getDay().toString().length === 1 ? '0' + (now.getDay() + 1).toString() : now.getDay() + 1;
-  hours = now.getHours().toString().length === 1 ? '0' + now.getHours().toString() : now.getHours();
-  minutes = now.getMinutes().toString().length === 1 ? '0' + now.getMinutes().toString() : now.getMinutes();
-  seconds = now.getSeconds().toString().length === 1 ? '0' + now.getSeconds().toString() : now.getSeconds();
-  
-  // seconds needs to be 0
-  seconds = '00';
-
-  formattedDateTime = year + '-' + month + '-' + day + 'T' + hours + ':' + minutes + ':' + seconds;
- 
-  if ( onlyBlank === true && $(this).val() ) {
-    return this;
-  }
-  
-  $(this).val(formattedDateTime);
-  
-  return this;
-}

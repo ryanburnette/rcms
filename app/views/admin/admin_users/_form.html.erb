@@ -15,7 +15,7 @@
 
 <div class="form-group">
   <label>Avatar</label>
-  <%= image_tag(@admin_admin_user.avatar_url) if @admin_admin_user.avatar? %>
+  <%= image_tag(@admin_admin_user.avatar.url(:thumb), :class => "img-thumbnail avatar-thumb" ) if @admin_admin_user.avatar? %>
   <%= f.file_field :avatar %>
   <%= f.hidden_field :avatar_cache %>
 </div>
