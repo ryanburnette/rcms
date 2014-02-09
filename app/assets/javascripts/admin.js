@@ -4,7 +4,7 @@
 //= require bootstrap
 
 //= require ace/ace
-//= require ace/theme-monokai
+//= require ace/theme-clouds
 
 jQuery(document).ready(function($) {
   var posts = {}
@@ -27,13 +27,18 @@ jQuery(document).ready(function($) {
   posts.initAceEditor = function () {
     if ( $('#editor').length > 0 ) {
       editor = ace.edit("editor");
+      editor.setTheme("ace/theme/clouds");
       editor.getSession().setUseWrapMode(true);
       editor.getSession().setMode("ace/mode/markdown");
 
-      editor.setValue($('#post_content,#page_content').val());
+      editor.setValue($('#post_content,#page_content').val(), -1);
 
       editor.on('change', function () {
         posts.matchAceEditorAndField();
+      });
+      $(window).on('load',function () {
+        posts.matchAceEditorAndField();
+        $('body').click();
       });
     }
   };
