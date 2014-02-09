@@ -7,12 +7,13 @@
 //= require ace/theme-clouds
 
 //= require ./lib/jquery.setnow.js
+//= require ./admin/images.js
+
+var admin = {}
+  , editor
+  ;
 
 jQuery(document).ready(function($) {
-  var admin = {}
-    , editor
-    ;
-
   admin.matchAceEditorAndField = function () {
     var height = editor.getSession().getScreenLength() * editor.renderer.lineHeight
       ;
@@ -126,7 +127,6 @@ jQuery(document).ready(function($) {
 
     if ( $selectAuthor.length > 0 ) {
       currentAdminUserID = $selectAuthor.data('admin-current-user-id');
-      console.log('option[value="' + currentAdminUserID.toString() + '"]');
       $selectAuthor.find('option[value="' + currentAdminUserID.toString() + '"]').attr('selected','selected');
     }
   };

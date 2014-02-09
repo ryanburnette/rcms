@@ -2,6 +2,7 @@ class Admin::AdminUsersController < ApplicationController
   
   before_action :authenticate_admin_user!
   before_action :set_admin_admin_user, only: [:show, :edit, :update, :destroy]
+  before_action :require_super_admin!, only: [:destroy]
 
   layout "admin"
 

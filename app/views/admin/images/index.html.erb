@@ -1,0 +1,37 @@
+<div class="panel panel-default admin-index images image-index">
+  <div class="panel-heading"><h2>Images</h2></div>
+  <div class="panel-body">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="narrow"><%= check_box_tag "all" %></th>
+            <th></th>
+            <th>Title</th>
+            <th>Alt</th>
+            <th>Featured On</th>
+            <th>Used On</th>
+            <th class="narrow"></th>
+            <th class="narrow"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @images.each do |image| %>
+            <tr data-id="<%= image.id %>">
+              <td style="vertical-align: middle"><%= check_box_tag "image-#{image.id}" %></td>
+              <td><%= image_tag(image.image.url(:thumb), :class => "img-thumbnail image-thumb" ) if image.image? %></td>
+              <td><%= image.title %></td>
+              <td><%= image.alt %></td>
+              <td>.</td>
+              <td>.</td>
+              <td style="vertical-align: middle"><%= link_to 'Edit', edit_admin_image_path(image), :class => 'btn btn-default btn-xs' %></td>
+              <td style="vertical-align: middle"><%= button_to 'Delete', admin_image_path(image), method: :delete, :class => 'btn btn-danger btn-xs', data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <%= link_to 'New Image', new_admin_image_path, {:class=>"btn btn-primary"} %>
+  </div>
+</div>

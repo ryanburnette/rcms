@@ -1,0 +1,52 @@
+
+  <% if @image.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@image.errors.count, "error") %> prohibited this image from being saved:</h2>
+
+      <ul>
+      <% @image.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, :class => "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :alt %>
+    <%= f.text_field :alt, :class => "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :image %>
+    <%= f.file_field :image, class: "form-control" %>
+    <%= f.hidden_field :image_cache %>
+  </div>
+
+  <% if @image.image? %>
+  <hr>
+  <div class="current-images">
+    <div>
+      <label>Thumb</label>
+      <%= image_tag(@image.image.url(:thumb), :class => "img-thumbnail image-thumb" ) %>
+    </div>
+    <div>
+      <label>Small</label>
+      <%= image_tag(@image.image.url(:small), :class => "img-thumbnail image-small" ) %>
+    </div>
+    <div>
+      <label>Medium</label>
+      <%= image_tag(@image.image.url(:medium), :class => "img-thumbnail image-medium" ) %>
+    </div>
+    <div>
+      <label>Large</label>
+      <%= image_tag(@image.image.url(:large), :class => "img-thumbnail image-large" ) %>
+    </div>
+    <div>
+      <label>Original</label>
+      <%= image_tag(@image.image.url, :class => "img-thumbnail image-original" ) %>
+    </div>
+  </div>
+  <% end %>

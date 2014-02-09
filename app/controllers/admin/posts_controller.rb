@@ -46,7 +46,7 @@ class Admin::PostsController < PostsController
   # DELETE /posts/1
   def destroy
     @post.destroy
-    redirect_to(admin_posts_url, {:notice => 'Post was successfully destroyed.'})
+    redirect_to admin_posts_url, {:notice => 'Post was successfully destroyed.'}
   end
 
   private
