@@ -14,7 +14,7 @@ jQuery(document).ready(function($) {
 
   posts.matchAceEditorAndField = function () {
     var editorContent = editor.getValue()
-      , $field = $('#post_content')
+      , $field = $('#post_content,#page_content')
       ;
 
     $field.val(editorContent);
@@ -27,7 +27,7 @@ jQuery(document).ready(function($) {
       editor = ace.edit("editor");
       editor.getSession().setUseWrapMode(true);
 
-      editor.setValue($('#post_content').val());
+      editor.setValue($('#editor_content').val());
 
       editor.on('change', function (e) {
         posts.matchAceEditorAndField();
