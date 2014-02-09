@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 
   # GET /posts
   def index
-    @posts = Post.order('posts.date DESC').all
+    @posts = Post.where(:type => nil).order('posts.date DESC').all
   end
 
   private
