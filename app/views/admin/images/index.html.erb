@@ -8,6 +8,7 @@
             <th class="narrow"><%= check_box_tag "all" %></th>
             <th></th>
             <th>Title</th>
+            <th>Slug</th>
             <th>Alt</th>
             <th>Featured On</th>
             <th>Used On</th>
@@ -22,6 +23,7 @@
               <td style="vertical-align: middle"><%= check_box_tag "image-#{image.id}" %></td>
               <td><%= image_tag(image.image.url(:thumb), :class => "img-thumbnail image-thumb" ) if image.image? %></td>
               <td><%= image.title %></td>
+              <td><%= image.slug %></td>
               <td><%= image.alt %></td>
               <td>.</td>
               <td>.</td>

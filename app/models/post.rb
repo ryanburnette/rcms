@@ -8,6 +8,8 @@ class Post < ActiveRecord::Base
 
   validates_presence_of :title, :date, :status
 
+  validates_uniqueness_of :slug
+
   def should_generate_new_friendly_id?
     new_record? || slug.blank?
   end

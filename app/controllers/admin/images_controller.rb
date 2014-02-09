@@ -47,14 +47,9 @@ class Admin::ImagesController < ImagesController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_image
-      @image = Image.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
     def image_params
-      params.require(:image).permit(:title, :alt, :image)
+      params.require(:image).permit(:title, :slug, :alt, :image)
     end
 
 end
