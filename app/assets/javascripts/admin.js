@@ -13,23 +13,26 @@ jQuery(document).ready(function($) {
     ;
 
   posts.matchAceEditorAndField = function () {
-    var editorContent = editor.getValue()
-      , $field = $('#post_content,#page_content')
+    var height = editor.getSession().getScreenLength() * editor.renderer.lineHeight
       ;
 
-    $field.val(editorContent);
-
-    return editorContent;
+    $('#post_content,#page_content').val(editor.getValue());
+    
+    console.log(height);
+    $('#editor').height(height.toString() + "px");
+    $('#editor-section').height(height.toString() + "px");
+    editor.resize();
   };
   
   posts.initAceEditor = function () {
     if ( $('#editor').length > 0 ) {
       editor = ace.edit("editor");
       editor.getSession().setUseWrapMode(true);
+      editor.getSession().setMode("ace/mode/markdown");
 
-      editor.setValue($('#editor_content').val());
+      editor.setValue($('#post_content,#page_content').val());
 
-      editor.on('change', function (e) {
+      editor.on('change', function () {
         posts.matchAceEditorAndField();
       });
     }
