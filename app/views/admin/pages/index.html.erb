@@ -1,10 +1,11 @@
-<div class="panel panel-default admin-index">
+<div class="panel panel-default admin-index pages">
   <div class="panel-heading"><h2>Pages</h2></div>
   <div class="panel-body">
     <div class="table-responsive">
       <table class="table">
         <thead>
           <tr>
+            <th class="narrow"></th>
             <th class="narrow"><%= check_box_tag "all" %></th>
             <th>Title</th>
             <th>Slug</th>
@@ -18,7 +19,8 @@
 
         <tbody>
           <% @pages.each do |page| %>
-            <tr>
+            <tr data-id="<%= page.id %>">
+              <td class="sort-handle"><span class="glyphicon glyphicon-move"></span></td>
               <td><%= check_box_tag "page-#{page.id}" %></td>
               <td><%= page.title %></td>
               <td><%= page.slug %></td>

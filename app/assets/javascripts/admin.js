@@ -1,4 +1,5 @@
 //= require jquery
+//= require jquery.ui.sortable
 
 //= require bootstrap
 
@@ -70,10 +71,52 @@ jQuery(document).ready(function($) {
     });
   };
 
+  admin.pagesSortable = function () {
+    var $sortable = $('.admin-index.pages tbody')
+      ;
+
+    $sortable.sortable({
+      handle: '.sort-handle'
+    , helper: function(e,ui) {
+        var $originals = ui.children()
+          , $helper = ui.clone()
+          ;
+        
+        $helper.css('background-color','white');
+        $helper.children('td').css('border','none');
+        $helper.children().each(function(index) {
+          $(this).width($originals.eq(index).width());
+        });
+        
+        return $helper;
+      }
+    , stop: function (e,ui) {
+        var post
+          ;
+        //console.log(ui.item.data('id'),ui.item.index());
+        post = $.ajax({
+          type: 'POST',
+          beforeSend: function(xhr) {
+            xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+          },
+          url: '/admin/pages/' + ui.item.data('id') + '/order.json',
+          data: { page: {'row_order_position':ui.item.index()} }
+        });
+
+        post.done(function (result) {
+          if ( !result ) {
+            $sortable.sortable('cancel');
+          }
+        });
+      }
+    });
+  };
+
   posts.initAceEditor();
   posts.setDtNow();
   admin.signOut();
   admin.changePassword();
+  admin.pagesSortable();
 });
 
 

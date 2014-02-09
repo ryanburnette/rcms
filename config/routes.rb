@@ -8,6 +8,7 @@ Rcms::Application.routes.draw do
     resources :posts
     resources :pages
     resources :admin_users, :path => "users"
+    post "/pages/:id/order(.:format)" => "pages#update_row_order_position"
   end
   get "/admin" => "dashboard#index"
   get "/admin/dashboard" => "dashboard#index"

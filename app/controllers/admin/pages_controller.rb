@@ -1,7 +1,7 @@
 class Admin::PagesController < PagesController
 
   before_action :authenticate_admin_user!
-  before_action :set_page, only: [:show, :edit, :update, :destroy]
+  before_action :set_page, only: [:show, :edit, :update, :destroy, :update_row_order_position]
   before_action :require_super_admin!, only: [:destroy]
 
   layout "admin"
@@ -48,11 +48,19 @@ class Admin::PagesController < PagesController
     redirect_to(admin_pages_url, {:notice => 'Page was successfully destroyed.'})
   end
 
+  def update_row_order_position
+    if @page.update_attribute :row_order_position, page_params[:row_order_position]
+      render :layout => false, :json => true
+    else
+      render :layout => false, :json => false
+    end
+  end
+
   private
 
   # Only allow a trusted parameter "white list" through.
   def page_params
-    params.require(:page).permit(:title, :slug, :content, :date, :status, :admin_user, :admin_user_id)
+    params.require(:page).permit(:title, :slug, :content, :date, :status, :admin_user, :admin_user_id, :row_order_position)
   end
 
 end
