@@ -7,4 +7,6 @@ class AdminUser < ActiveRecord::Base
 
   has_many :posts
 
+  mount_uploader :avatar, AvatarUploader
+
 end

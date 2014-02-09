@@ -66,3 +66,7 @@ gem 'awesome_print'
 
 # https://github.com/mixonic/ranked-model 
 gem 'ranked-model'
+
+# https://github.com/carrierwaveuploader/carrierwave
+gem 'mini_magick'
+gem 'carrierwave'
