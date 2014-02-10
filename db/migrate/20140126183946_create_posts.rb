@@ -5,10 +5,9 @@ class CreatePosts < ActiveRecord::Migration
       t.string :slug
       t.text :content
       t.datetime :date
-
-      #add_index :posts, :slug, :sluggable_type, unique: true
-
+      t.integer :admin_user_id
       t.timestamps
     end
+    add_index :posts, :admin_user_id
   end
 end

@@ -68,12 +68,14 @@ ActiveRecord::Schema.define(version: 20140210001402) do
     t.string   "slug"
     t.text     "content"
     t.datetime "date"
+    t.integer  "admin_user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "admin_user_id"
     t.string   "status",        default: "draft"
     t.string   "type"
     t.integer  "row_order"
   end
+
+  add_index "posts", ["admin_user_id"], name: "index_posts_on_admin_user_id", using: :btree
 
 end
