@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery :with => :exception
 
-  helper_method :roles_available, :post_statuses, :admin_nav_class
+  helper_method :roles_available, :post_statuses, :admin_nav_class, :post_attached_images
 
   def roles_available
     [
@@ -25,6 +25,14 @@ class ApplicationController < ActionController::Base
     elsif params[:controller] == current_controller && current_action == params[:action]
       "active"
     end
+  end
+
+  def post_attached_images(post)
+    arr = []
+    post.images.each { |i|
+      arr.push i.id
+    }
+    return arr
   end
 
   private

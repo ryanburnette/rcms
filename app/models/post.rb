@@ -1,6 +1,7 @@
 class Post < ActiveRecord::Base
 
   belongs_to :admin_user
+  has_and_belongs_to_many :images
 
   extend FriendlyId
   friendly_id :title, :use => :slugged

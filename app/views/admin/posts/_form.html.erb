@@ -23,3 +23,9 @@
   <div id="editor"></div>
   <%= f.text_area :content, :class => "form-control" %>
 </div>
+<div class="form-group">
+  <%= f.label :images %>
+  <p>Select which images you want to attach to this post. Once attached, images may be called from
+    the content using shortcodes, or automatically embedded as a gallery.</p>
+  <%= f.collection_select :image_ids, Image.all, :id, :slug, {:selected => post_attached_images(@post)}, {:class => 'form-control', :multiple => true} %>
+</div>

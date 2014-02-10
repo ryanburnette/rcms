@@ -35,6 +35,7 @@ class Admin::PostsController < PostsController
   # PATCH/PUT /posts/1
   def update
     set_post
+
     if @post.update_attributes(post_params)
       redirect_to(edit_admin_post_path(@post), :notice => "Post was successfully updated.")
     else
@@ -53,7 +54,7 @@ class Admin::PostsController < PostsController
 
   # Only allow a trusted parameter "white list" through.
   def post_params
-    params.require(:post).permit(:title, :slug, :content, :date, :status, :admin_user, :admin_user_id)
+    params.require(:post).permit(:title, :slug, :content, :date, :status, :admin_user, :admin_user_id, :image_ids => [])
   end
 
   '''

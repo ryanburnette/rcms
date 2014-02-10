@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140209211750) do
+ActiveRecord::Schema.define(version: 20140210001402) do
 
   create_table "admin_users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -55,6 +55,13 @@ ActiveRecord::Schema.define(version: 20140209211750) do
     t.datetime "updated_at"
     t.string   "slug"
   end
+
+  create_table "images_posts", id: false, force: true do |t|
+    t.integer "image_id"
+    t.integer "post_id"
+  end
+
+  add_index "images_posts", ["image_id", "post_id"], name: "index_images_posts_on_image_id_and_post_id", using: :btree
 
   create_table "posts", force: true do |t|
     t.string   "title"

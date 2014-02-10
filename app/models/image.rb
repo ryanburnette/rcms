@@ -1,5 +1,7 @@
 class Image < ActiveRecord::Base
 
+  has_and_belongs_to_many :posts
+
   extend FriendlyId
   friendly_id :title, :use => :slugged
   validates_format_of :slug, :with => /\A[a-z0-9-]+\z/i
