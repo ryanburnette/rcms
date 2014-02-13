@@ -4,13 +4,14 @@ class PostsController < ApplicationController
 
   # GET /posts
   def index
-    @posts = Post.where(:type => nil).order('posts.date DESC').all
+    #@posts = Post.where(:type => nil).order('posts.date DESC').all
+    @posts = Post.posts_only.all
   end
 
   private
 
     def set_post
-      @post = Post.friendly.find(params[:id])
+      @post = Post.posts_only.friendly.find(params[:id])
     end
 
 end
